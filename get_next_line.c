@@ -6,7 +6,7 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 21:00:08 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/11/18 22:33:49 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/11/18 22:47:05 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,14 @@ static char *process_read(char *storage, int fd)
         temp[bytes_read] = '\0';
         storage = ft_strjoin(storage, temp);
     }
-    // storage[bytes_read] = '\0';
     free(temp);
     return storage;
 }
 
-static char *process_line_extract(char *storage, char *line)
+static char *process_line_extract(char *storage)
 {
     int line_length = 0;
-    
+    char *line = NULL;
     while(storage[line_length] && storage[line_length] != '\n')
     {
         line_length++;
@@ -44,7 +43,9 @@ static char *process_line_extract(char *storage, char *line)
         line[line_length] = storage[line_length];
         line_length++;
     }
-    line[line_length] = '\0';
+    line[line_length] = '\n';
+    line[line_length+1] = '\0';
+
     return line;
 }
 
@@ -57,6 +58,8 @@ static char *process_storage_resize(char *storage)
     {
         i++;
     }
+    if(storage[i] == '\n')
+        i++;
     resized_storage = malloc(ft_strlen(storage)- i + 1);
     while(storage[i])
     {
@@ -64,7 +67,7 @@ static char *process_storage_resize(char *storage)
         i++;
         j++;
     }
-    resized_storage[j] = 0;
+    resized_storage[j] = '\0';
     free(storage);
     return resized_storage;
 }
@@ -74,7 +77,7 @@ char *get_next_line(int fd)
     static char *storage;
     char *line = NULL;
     storage = process_read(storage, fd);
-    line = process_line_extract(storage, line);
+    line = process_line_extract(storage);
     storage = process_storage_resize(storage);
     return line;
 }
