@@ -3,7 +3,7 @@
 
 int main(void)
 {
-   int fd = open("get_next_line.c", O_RDONLY);
+   int fd = open("main.c", O_RDONLY);
 
    char *s;
    while ((s = get_next_line(fd)) != NULL)

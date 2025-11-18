@@ -6,7 +6,7 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 21:00:08 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/11/18 22:47:05 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/11/18 23:08:24 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char *process_read(char *storage, int fd)
     {
         bytes_read = read(fd, temp, BUFFER_SIZE);
         if(bytes_read <= 0)
-            break;
+            return (storage = NULL, storage);
         temp[bytes_read] = '\0';
         storage = ft_strjoin(storage, temp);
     }
