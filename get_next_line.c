@@ -6,15 +6,16 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 21:00:08 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/11/18 23:08:24 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/11/18 23:22:25 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
+// »»-----► Number of lines: 14
 static char *process_read(char *storage, int fd)
 {
-    char *temp = malloc(BUFFER_SIZE+1);
+
+    char *temp = malloc((size_t)BUFFER_SIZE+1);
     int bytes_read = 1;
     while(!ft_strchr(storage, '\n'))
     {
@@ -25,17 +26,22 @@ static char *process_read(char *storage, int fd)
         storage = ft_strjoin(storage, temp);
     }
     free(temp);
+
     return storage;
 }
-
+// »»-----► Number of lines: 20
 static char *process_line_extract(char *storage)
 {
     int line_length = 0;
     char *line = NULL;
+    if(!storage)
+        return free(storage), NULL;
     while(storage[line_length] && storage[line_length] != '\n')
     {
         line_length++;
     }
+    if(storage[line_length] == '\n')
+        line_length++;
     line = malloc(line_length+1);
     line_length = 0;
     while(storage[line_length] && storage[line_length] != '\n')
@@ -48,11 +54,13 @@ static char *process_line_extract(char *storage)
 
     return line;
 }
-
+// »»-----► Number of lines: 20
 static char *process_storage_resize(char *storage)
 {
     int i = 0;
     int j = 0;
+    if(!storage)
+        return free(storage), NULL;
     char *resized_storage = NULL;
     while(storage[i] && storage[i] != '\n')
     {
@@ -71,7 +79,7 @@ static char *process_storage_resize(char *storage)
     free(storage);
     return resized_storage;
 }
-
+// »»-----► Number of lines: 6
 char *get_next_line(int fd)
 {
     static char *storage;

@@ -5,9 +5,10 @@ int main(void)
 {
    int fd = open("main.c", O_RDONLY);
 
-   char *s;
-   while ((s = get_next_line(fd)) != NULL)
+   char *s = "A";
+   while (s)
    {
+      s = get_next_line(fd);
       printf("%s", s);
       free(s);
    }
