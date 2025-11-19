@@ -1,20 +1,21 @@
-#include <stdio.h>
 #include "get_next_line.h"
+#include <stdio.h>
 
-int main(void)
+int	main(void)
 {
-   int fd = open("main.c", O_RDONLY);
+	int		fd;
+	char	*s;
 
-   char *s = "A";
-   for(;;)
-   {
-      s = get_next_line(fd);
-      if(s == NULL)
-         break;
-      printf("%s", s);
-      free(s);
-   }
-
-   close(fd);
-   return 0;
+	fd = open("main.c", O_RDONLY);
+	s = "A";
+	for (;;)
+	{
+		s = get_next_line(fd);
+		if (s == NULL)
+			break ;
+		printf("%s", s);
+		free(s);
+	}
+	close(fd);
+	return (0);
 }

@@ -17,8 +17,8 @@ char	*ft_strchr(const char *s, int c)
 	int	i;
 
 	i = 0;
-	if(!s)
-		return NULL;
+	if (!s)
+		return (NULL);
 	while (s[i] != '\0')
 	{
 		if (s[i] == (char)c)
@@ -34,17 +34,12 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-char	*ft_strjoin(char  *s1, char  *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*result;
 	int		i;
 	int		j;
-	if (!s1 && !s2)
-		return (NULL);
-	if (!s1)
-		return ft_strdup(s2);
-	if (!s2)
-		return (free(s1), ft_strdup(s1));
+
 	result = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	i = -1;
 	if (!result)
@@ -59,11 +54,10 @@ char	*ft_strjoin(char  *s1, char  *s2)
 		j++;
 	}
 	result[i] = '\0';
-	
 	return (free(s1), result);
 }
 
-char	*ft_strdup( char *s)
+char	*ft_strdup(char *s)
 {
 	size_t	size;
 	size_t	i;
