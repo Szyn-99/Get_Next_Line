@@ -6,7 +6,7 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 21:00:05 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/11/18 22:42:11 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/11/19 17:38:58 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,22 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
+
 #ifndef BUFFER_SIZE
 #define BUFFER_SIZE 24
 #endif
+
+
+#ifndef OPEN_MAX
+#define OPEN_MAX 1024
+#endif
+
 char	*ft_strchr(const char *s, int c);
 char *get_next_line(int fd);
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin(char  *s1, char  *s2);
 size_t	ft_strlen(const char *s);
-char	*ft_strdup(const char *s);
+char	*ft_strdup( char *s);
 
 
 #endif

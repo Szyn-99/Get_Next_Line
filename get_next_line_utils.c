@@ -6,7 +6,7 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 21:00:13 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/11/18 23:00:58 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/11/19 17:45:22 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,17 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char  *s1, char  *s2)
 {
 	char	*result;
 	int		i;
 	int		j;
-
 	if (!s1 && !s2)
 		return (NULL);
 	if (!s1)
-		return (ft_strdup(s2));
+		return ft_strdup(s2);
 	if (!s2)
-		return ((ft_strdup(s1)));
+		return (free(s1), ft_strdup(s1));
 	result = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	i = -1;
 	if (!result)
@@ -60,10 +59,11 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		j++;
 	}
 	result[i] = '\0';
-	return (result);
+	
+	return (free(s1), result);
 }
 
-char	*ft_strdup(const char *s)
+char	*ft_strdup( char *s)
 {
 	size_t	size;
 	size_t	i;

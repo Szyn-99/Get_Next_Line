@@ -6,15 +6,14 @@ int main(void)
    int fd = open("main.c", O_RDONLY);
 
    char *s = "A";
-   while (s)
+   for(;;)
    {
       s = get_next_line(fd);
       if(s == NULL)
-         return 1;
+         break;
       printf("%s", s);
       free(s);
    }
-   free(s);
 
    close(fd);
    return 0;
