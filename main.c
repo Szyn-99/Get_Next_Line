@@ -9,9 +9,12 @@ int main(void)
    while (s)
    {
       s = get_next_line(fd);
+      if(s == NULL)
+         return 1;
       printf("%s", s);
       free(s);
    }
+   free(s);
 
    close(fd);
    return 0;

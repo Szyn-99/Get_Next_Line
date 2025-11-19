@@ -6,7 +6,7 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 21:00:08 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/11/18 23:22:25 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/11/19 15:51:34 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,12 @@ static char *process_read(char *storage, int fd)
     while(!ft_strchr(storage, '\n'))
     {
         bytes_read = read(fd, temp, BUFFER_SIZE);
-        if(bytes_read <= 0)
-            return (storage = NULL, storage);
         temp[bytes_read] = '\0';
         storage = ft_strjoin(storage, temp);
+        if(bytes_read <= 0)
+            return (storage);
     }
     free(temp);
-
     return storage;
 }
 // »»-----► Number of lines: 20
@@ -34,7 +33,7 @@ static char *process_line_extract(char *storage)
 {
     int line_length = 0;
     char *line = NULL;
-    if(!storage)
+    if(!storage || !storage[0])
         return free(storage), NULL;
     while(storage[line_length] && storage[line_length] != '\n')
     {
@@ -59,7 +58,7 @@ static char *process_storage_resize(char *storage)
 {
     int i = 0;
     int j = 0;
-    if(!storage)
+    if(!storage || !storage[0])
         return free(storage), NULL;
     char *resized_storage = NULL;
     while(storage[i] && storage[i] != '\n')
