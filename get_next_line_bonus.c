@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: szyn <szyn@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 21:00:08 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/11/20 18:34:11 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/11/20 22:13:40 by szyn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	line = NULL;
-	if (BUFFER_SIZE <= 0 || fd < 0 || fd > 1024)
+	if (BUFFER_SIZE <= 0 || fd < 0 || fd >= 1024)
 		return (NULL);
 	storage[fd] = process_read(storage[fd], fd);
 	line = process_line_extract(storage[fd]);
