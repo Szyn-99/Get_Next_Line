@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: szyn <szyn@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 21:00:05 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/11/19 17:38:58 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/11/20 22:39:23 by szyn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,6 @@
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 24
-# endif
-
-# ifndef OPEN_MAX
-#  define OPEN_MAX 1024
 # endif
 
 char	*ft_strchr(const char *s, int c);

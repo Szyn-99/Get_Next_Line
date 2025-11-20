@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: szyn <szyn@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 21:00:08 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/11/19 18:00:07 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/11/20 22:39:58 by szyn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,9 +123,9 @@ char	*get_next_line(int fd)
 	static char	*storage;
 	char		*line;
 
-	line = NULL;
-	if (fd >= OPEN_MAX || BUFFER_SIZE <= 0 || fd < 0)
+	if (BUFFER_SIZE <= 0 || fd < 0)
 		return (NULL);
+	line = NULL;
 	storage = process_read(storage, fd);
 	line = process_line_extract(storage);
 	storage = process_storage_resize(storage);

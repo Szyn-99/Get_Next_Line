@@ -116,11 +116,11 @@ char	*process_storage_resize(char *storage)
 
 char	*get_next_line(int fd)
 {
-	if (BUFFER_SIZE <= 0 || fd < 0 || fd >= 1024)
-		return (NULL);
 	static char	*storage[1024];
 	char		*line;
 
+	if (BUFFER_SIZE <= 0 || fd < 0 || fd >= 1024)
+		return (NULL);
 	line = NULL;
 	storage[fd] = process_read(storage[fd], fd);
 	line = process_line_extract(storage[fd]);
