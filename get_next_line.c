@@ -49,7 +49,7 @@ char	*process_read(char *storage, int fd)
 			return (NULL);
 		}
 		temp[bytes_read] = '\0';
-		storage = ft_strjoin(storage, temp);
+		storage = process_reading_helper(storage, temp);
 		if (bytes_read == 0)
 			return (free(temp), storage);
 	}
