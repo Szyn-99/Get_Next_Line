@@ -41,8 +41,10 @@ char	*process_read(char *storage, int fd)
 	ssize_t	bytes_read;
 
 	temp = malloc((size_t)BUFFER_SIZE + 1);
-    if(!temp)
-        return (NULL);
+	if (!temp)
+	{
+		return (NULL);
+	}
 	while (!ft_strchr(storage, '\n'))
 	{
 		bytes_read = read(fd, temp, BUFFER_SIZE);
