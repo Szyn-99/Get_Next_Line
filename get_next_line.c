@@ -12,25 +12,27 @@
 
 #include "get_next_line.h"
 
-char *process_reading_helper(char *storage, char *temp)
+char	*process_reading_helper(char *storage, char *temp)
 {
-    char *concatenated_results = NULL;
-    if (!storage && !temp)
+	char	*concatenated_results;
+
+	concatenated_results = NULL;
+	if (!storage && !temp)
 		return (NULL);
 	else if (!storage)
 		return (ft_strdup(temp));
 	else if (!temp)
 	{
 		concatenated_results = ft_strdup(storage);
-        free(storage);
-        return (concatenated_results);
-    }
-    else
-    {
-        concatenated_results = ft_strjoin(storage, temp);
-        return (concatenated_results);
-    }
-    return NULL;
+		free(storage);
+		return (concatenated_results);
+	}
+	else
+	{
+		concatenated_results = ft_strjoin(storage, temp);
+		return (concatenated_results);
+	}
+	return (NULL);
 }
 
 char	*process_read(char *storage, int fd)
@@ -39,6 +41,8 @@ char	*process_read(char *storage, int fd)
 	ssize_t	bytes_read;
 
 	temp = malloc((size_t)BUFFER_SIZE + 1);
+    if(!temp)
+        return (NULL);
 	while (!ft_strchr(storage, '\n'))
 	{
 		bytes_read = read(fd, temp, BUFFER_SIZE);
@@ -78,12 +82,8 @@ char	*process_line_extract(char *storage)
 		line_length++;
 	}
 	if (storage[line_length] == '\n')
-	{
-		line[line_length] = '\n';
-		line[line_length + 1] = '\0';
-	}
-	else
-		line[line_length] = '\0';
+		line[line_length++] = '\n';
+	line[line_length] = '\0';
 	return (line);
 }
 
@@ -122,7 +122,7 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	line = NULL;
-	if (fd >= OPEN_MAX || BUFFER_SIZE <= 0 || fd <= 0)
+	if (fd >= OPEN_MAX || BUFFER_SIZE <= 0 || fd < 0)
 		return (NULL);
 	storage = process_read(storage, fd);
 	line = process_line_extract(storage);
