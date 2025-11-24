@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: szyn <szyn@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 21:00:08 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/11/20 22:32:39 by szyn             ###   ########.fr       */
+/*   Updated: 2025/11/24 17:50:25 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,11 @@ char	*process_read(char *storage, int fd)
 	char	*temp;
 	ssize_t	bytes_read;
 
+	bytes_read = 1;
 	temp = malloc((size_t)BUFFER_SIZE + 1);
 	if (!temp)
 		return (NULL);
-	while (!ft_strchr(storage, '\n'))
+	while (bytes_read)
 	{
 		bytes_read = read(fd, temp, BUFFER_SIZE);
 		if (bytes_read == -1)
@@ -55,6 +56,8 @@ char	*process_read(char *storage, int fd)
 		storage = process_reading_helper(storage, temp);
 		if (bytes_read == 0)
 			return (free(temp), storage);
+		if (ft_strchr(storage, '\n'))
+			break ;
 	}
 	free(temp);
 	return (storage);
@@ -116,10 +119,10 @@ char	*process_storage_resize(char *storage)
 
 char	*get_next_line(int fd)
 {
-	static char	*storage[1024];
+	static char	*storage[OPEN_MAX];
 	char		*line;
 
-	if (BUFFER_SIZE <= 0 || fd < 0 || fd >= 1024)
+	if (BUFFER_SIZE <= 0 || fd < 0 || fd >= OPEN_MAX)
 		return (NULL);
 	line = NULL;
 	storage[fd] = process_read(storage[fd], fd);
